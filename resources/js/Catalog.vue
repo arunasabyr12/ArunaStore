@@ -1,28 +1,50 @@
-
 <template>
-  <div>
-    <h2>Product Catalog</h2>
+  <div class="catalog">
+    <h2>Ruru Concept Store</h2>
+
+    <!-- Ссылка на корзину с количеством товаров -->
+    <div class="cart-link">
+      🛒 <router-link to="/cart">Cart ({{ cartCount }})</router-link>
+    </div>
+
     <ul>
       <li v-for="product in products" :key="product.id">
         <strong>{{ product.name }}</strong>
-        <p>{{ product.description }}</p>
-        <p>Price: {{ product.price }}</p>
+
+        <router-link :to="'/product/' + product.id">View Details</router-link>
       </li>
     </ul>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
+import { useCartStore } from '@/cartStore.js';
 
-// Define a reactive array for products
 const products = ref([]);
+const cartStore = useCartStore(); 
 
-// Fetch products from the API when the component is mounted
+// Количество товаров в корзине
+const cartCount = computed(() => cartStore.totalItems);
+
 onMounted(async () => {
-  const response = await fetch('/api/products');  // Make API call
-  const data = await response.json();  // Parse the response
-  products.value = data;  // Set the fetched products to the reactive variable
+  const response = await fetch('/api/products');
+  products.value = await response.json();
 });
 </script>
 
+<style scoped>
+.description {
+  font-style: italic;
+  color: #555;
+  margin-bottom: 20px;
+}
+.cart-link {
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+.cart-link a {
+  text-decoration: none;
+  color: #d9534f;
+}
+</style>
