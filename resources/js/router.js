@@ -6,6 +6,8 @@ import Home from './Home.vue';
 import Catalog from './Catalog.vue';
 import ProductPage from './ProductPage.vue';
 import Cart from './Cart.vue';
+import Order from './Order.vue';
+import ThankYou from './ThnakYou.vue';
 
 const routes = [{
         path: '/',
@@ -22,6 +24,14 @@ const routes = [{
     {
         path:'/cart',
         component: Cart
+    },
+    {
+        path:'/order',
+        component: Order
+    },
+    {
+        path:'/thank-you',
+        component: ThankYou
     }
 ];
 

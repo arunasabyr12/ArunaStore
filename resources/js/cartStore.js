@@ -9,6 +9,9 @@ export const useCartStore = defineStore('cart', {
     totalItems(state) {
       return state.cart.reduce((sum, item) => sum + item.quantity, 0);
     },
+    totalPrice(state) {
+      return state.cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    },
   },
 
   actions: {
@@ -31,6 +34,10 @@ export const useCartStore = defineStore('cart', {
         }
       }
     },
+
+    // New action to clear the cart after order is placed
+    clearCart() {
+      this.cart = []; // ✅ Очищаем корзину
+    },
   },
 });
-

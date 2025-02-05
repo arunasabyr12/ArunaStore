@@ -10,6 +10,14 @@
           <button @click="cartStore.removeFromCart(item.id)">➖</button>
         </li>
       </ul>
+
+
+      <p><strong>Общая сумма: {{ totalPrice }} KZT</strong></p>
+
+
+      <router-link to="/order">
+        <button class="btn btn-primary">Оформить заказ</button>
+      </router-link>
     </div>
     <p v-else>Корзина пуста.</p>
 
@@ -19,6 +27,9 @@
 
 <script setup>
 import { useCartStore } from '@/cartStore.js';
+import { computed } from 'vue';
 
 const cartStore = useCartStore();
+
+const totalPrice = computed(() => cartStore.totalPrice);
 </script>
