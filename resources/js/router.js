@@ -8,6 +8,7 @@ import ProductPage from './ProductPage.vue';
 import Cart from './Cart.vue';
 import Order from './Order.vue';
 import ThankYou from './ThnakYou.vue';
+import Admin from './Admin.vue';
 
 const routes = [{
         path: '/',
@@ -32,6 +33,10 @@ const routes = [{
     {
         path:'/thank-you',
         component: ThankYou
+    },
+    {
+        path:'/admin',
+        component: Admin
     }
 ];
 

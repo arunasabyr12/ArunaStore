@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Order;
 
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -38,3 +39,6 @@ Route::post('/orders', function (Request $request) {
     return response()->json(['message' => 'Заказ оформлен!', 'order' => $order], 201);
 });
 Route::get('/order', [OrderController::class, 'index']);
+Route::post('/products', [ProductController::class, 'store']);
+Route::put('/products/{id}', [ProductController::class, 'update']);
+Route::delete('/products{id}', [ProductController::class, 'destroy']);
